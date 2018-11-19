@@ -1,0 +1,86 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+section {
+  padding: 60px;
+
+}
+
+
+@mixin ani($prop,$time) {
+  -webkit-transition: $prop $time;
+  -moz-transition: $prop $time;
+  -ms-transition: $prop $time;
+  -o-transition: $prop $time;
+  transition: $prop $time;
+}
+
+small {
+  color: #aeaeae;
+}
+
+// Circle part
+
+.myCircle {
+  display: block;
+  width: 200px;
+  height: 200px;
+  position: relative;
+
+  &-a,&-b{
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: gray;
+    @include ani(background-color,200ms);
+  }
+  &-a {
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+    &:hover{
+      background-color: green;
+    }
+  }
+  &-b {
+    top: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    &:hover{
+      background-color: red;
+      cursor: pointer;
+    }
+    &:active{
+      @include ani(all,50ms);
+      width: 80px;
+      height: 80px;
+      top: 60px;
+      left: 60px;
+      box-shadow: 0px 0px 5px 5px #333
+    }
+  }
+
+  &.animated {
+    animation: myAni 2s ease-out;
+  }
+}
+
+
+// Creating animation
+
+@keyframes myAni {
+  0%   {
+    margin-left: 0;
+    transform: rotateY(0);
+  }
+  50%  {
+    margin-left: 650px;
+    transform: rotateY(540deg);
+  }
+  100% {
+    margin-left: 0px;
+    transform: rotateY(1080deg);
+  }
+}
